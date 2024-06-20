@@ -22,8 +22,8 @@ meses_nome_para_numero = {
 url = 'https://myanimelist.net/anime/season'
 abrir_url = request.urlopen(url)
 html = abrir_url.read().decode('utf-8')
-html_animes_antes_continuing = re.search(r'(?s)(.*)<div class="anime-header">TV \(Continuing\)</div>', html).group(1)
-urls_animes = re.findall(r'https://myanimelist\.net/anime/\d+/\S+', html_animes_antes_continuing)
+partes_html = re.split(r'<div class="anime-header">', html)
+urls_animes = re.findall(r'https://myanimelist\.net/anime/\d+/\S+', partes_html[1])
 
 def exibir_e_selecionar_animes(num_anime):
   c = 0
